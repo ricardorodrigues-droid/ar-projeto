@@ -3,20 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Molécula em Realidade Aumentada</title>
 
   <script type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
   </script>
 
   <style>
     html, body {
       margin: 0;
+      width: 100%;
       height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
     }
 
     model-viewer {
       width: 100%;
       height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    #ar-button {
+      background-color: #1976d2;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    #ar-button:active {
+      transform: translateX(-50%) scale(0.98);
     }
   </style>
 </head>
@@ -29,7 +53,13 @@
   ar-modes="scene-viewer webxr"
   camera-controls
   auto-rotate
-  shadow-intensity="1">
+  shadow-intensity="1"
+  exposure="1">
+
+  <button id="ar-button" slot="ar-button">
+    Ver em Realidade Aumentada
+  </button>
+
 </model-viewer>
 
 </body>
