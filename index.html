@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Molécula 3D</title>
+  <title>Visualizador Molecular</title>
 
   <script type="module"
     src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
@@ -21,23 +21,35 @@
     model-viewer {
       width: 100%;
       height: 100vh;
+      display: block;
       background-color: #f5f5f5;
     }
 
     #surface-button {
-      background-color: #1976d2;
-      border-radius: 8px;
-      border: none;
-      color: white;
-      position: absolute;
-      bottom: 40px;
+      position: fixed;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
+
+      background-color: #1976d2;
+      color: white;
+
+      border: none;
+      border-radius: 8px;
+
       padding: 14px 28px;
       font-size: 18px;
+      font-weight: bold;
+
       cursor: pointer;
+
       box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-      z-index: 100;
+
+      z-index: 9999;
+    }
+
+    #surface-button:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -49,7 +61,6 @@
   src="nova.glb"
   camera-controls
   auto-rotate
-  scale="0.05 0.05 0.05"
   shadow-intensity="1"
   exposure="1">
 </model-viewer>
@@ -59,20 +70,20 @@
 </button>
 
 <script>
-  const viewer = document.getElementById('moleculeViewer');
-  const button = document.getElementById('surface-button');
+  const viewer = document.getElementById("moleculeViewer");
+  const button = document.getElementById("surface-button");
 
   let surfaceAtiva = false;
 
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
 
     if (!surfaceAtiva) {
-      viewer.src = 'nova_surface.glb';
-      button.textContent = 'Desativar Surface';
+      viewer.src = "nova_surface.glb";
+      button.textContent = "Desativar Surface";
       surfaceAtiva = true;
     } else {
-      viewer.src = 'nova.glb';
-      button.textContent = 'Ativar Surface';
+      viewer.src = "nova.glb";
+      button.textContent = "Ativar Surface";
       surfaceAtiva = false;
     }
 
